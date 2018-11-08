@@ -1,0 +1,40 @@
+server:
+  port: 8040
+spring:
+  application:
+    name: microservice-gateway-zuul
+eureka:
+  client:
+    service-url:
+      defaultZone: http://nsk:abcd1234@localhost:8764/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    prefer-ip-address: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+zuul:
+  # 自定义微服务的访问路径
+  # http://localhost:8040/microservice-consumer-movie/movie-api/user/1
+  # 等价于  http://localhost:8040/movie/movie-api/user/1
+  routes:
+#    user-route:
+#       service-id: microservice-consumer-movie
+#       path: /movie/**
+#    user-route:
+#       url: http://localhost:8081/movie-api/
+#       path: /movie/**
+#    不去除后缀，localhost:8040/movie-api/user/1
+#    等价于  http://localhost:8040/microservice-consumer-movie/movie-api/user/1
+#    microservice-consumer-movie:
+#       path: /movie-api/**
+#       strip-prefix: false
+     microservice-consumer-movie: /movie-api/**
+  # 忽略指定微服务
+#  ignored-services: microservice-provider-user,microservice-consumer-movie
+#   忽略所有微服务
+  ignored-services: '*'
+
