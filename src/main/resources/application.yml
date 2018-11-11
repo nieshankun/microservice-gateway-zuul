@@ -19,9 +19,9 @@ management:
 
 zuul:
 # 禁用zuul过滤器
-  PreRequestLogFilter:
-     pre:
-       disable: true
+#  PreRequestLogFilter:
+#     pre:
+#       disable: true
   routes:
   # 自定义微服务的访问路径
   # http://localhost:8040/microservice-consumer-movie/movie-api/user/1
