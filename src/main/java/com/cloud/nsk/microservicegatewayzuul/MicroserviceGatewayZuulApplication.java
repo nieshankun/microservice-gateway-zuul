@@ -1,5 +1,6 @@
 package com.cloud.nsk.microservicegatewayzuul;
 
+import com.cloud.nsk.microservicegatewayzuul.filter.PreRequestLogFilter;
 import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,5 +26,10 @@ public class MicroserviceGatewayZuulApplication {
 		registrationBean.addUrlMappings("/hystrix.stream");
 		registrationBean.setName("HystrixMetricsStreamServlet");
 		return registrationBean;
+	}
+
+	@Bean
+	public PreRequestLogFilter preRequestLogFilter(){
+		return new PreRequestLogFilter();
 	}
 }

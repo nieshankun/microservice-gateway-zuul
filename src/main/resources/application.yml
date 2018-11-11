@@ -16,25 +16,37 @@ management:
     web:
       exposure:
         include: "*"
+
 zuul:
+# 禁用zuul过滤器
+  PreRequestLogFilter:
+     pre:
+       disable: true
+  routes:
   # 自定义微服务的访问路径
   # http://localhost:8040/microservice-consumer-movie/movie-api/user/1
   # 等价于  http://localhost:8040/movie/movie-api/user/1
-  routes:
+    microservice-consumer-movie: /movie/**
+
+# 效果同上
 #    user-route:
 #       service-id: microservice-consumer-movie
 #       path: /movie/**
+
+# 效果同上,url后面加上/movie-api后效果同下
 #    user-route:
-#       url: http://localhost:8081/movie-api/
+#       url: http://localhost:8081
 #       path: /movie/**
+
 #    不去除后缀，localhost:8040/movie-api/user/1
 #    等价于  http://localhost:8040/microservice-consumer-movie/movie-api/user/1
 #    microservice-consumer-movie:
 #       path: /movie-api/**
 #       strip-prefix: false
-     microservice-consumer-movie: /movie-api/**
+
   # 忽略指定微服务
-#  ignored-services: microservice-provider-user,microservice-consumer-movie
+  ignored-services: microservice-provider-user,microservice-consumer-movie
+
 #   忽略所有微服务
-  ignored-services: '*'
+#  ignored-services: '*'
 
