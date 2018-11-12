@@ -48,8 +48,8 @@ public class MovieFallbackProvider implements FallbackProvider {
 
             @Override
             public InputStream getBody() throws IOException {
-                return new ByteArrayInputStream(("The microservice-consumer-movie is not available,please try it later!").
-                        getBytes());
+                return new ByteArrayInputStream(("The microservice-consumer-movie is not available, " +
+                        "please try it later!").getBytes());
             }
 
             @Override
