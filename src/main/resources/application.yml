@@ -17,6 +17,10 @@ management:
       exposure:
         include: "*"
 
+application-service:
+   userUrl: http://microservice-provider-user/user-api/user/
+   movieUrl: http://microservice-consumer-movie/movie-api/user/{id}
+
 zuul:
 # 禁用zuul过滤器
 #  PreRequestLogFilter:
